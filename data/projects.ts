@@ -17,7 +17,6 @@ export const projects: Project[] = [
       "Successfully centralized the management of Digital Transformation (DX) requests into a single web platform.",
     ],
     github: "https://github.com/Junniora/GoDigital",
-    link: "https://example.com"
   },
   {
     slug: "quality-gate",
