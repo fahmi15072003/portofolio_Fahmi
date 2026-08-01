@@ -65,6 +65,9 @@ export default function Skills() {
         { name: "Git", icon: <FaGitAlt className="text-orange-500 text-lg" /> },
         { name: "GitHub", icon: <FaGithub className="text-white text-lg" /> },
         { name: "Power Apps", icon: <FaMicrosoft className="text-blue-500 text-lg" /> },
+        { name: "Microsoft Word", icon: <FaMicrosoft className="text-blue-400 text-lg" /> },
+        { name: "Microsoft Power Point", icon: <FaMicrosoft className="text-blue-400 text-lg" /> },
+        { name: "Microsoft Excel", icon: <FaMicrosoft className="text-blue-400 text-lg" /> },
         { name: "Domo", icon: <FaChartBar className="text-indigo-500 text-lg" /> },
         { name: "Arduino IDE", icon: <SiArduino className="text-cyan-500 text-lg" /> }
       ]
