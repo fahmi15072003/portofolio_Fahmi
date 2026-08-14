@@ -56,9 +56,9 @@ export default function HeroContent() {
         variants={itemVariants}
         className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-white"
       >
-        Ángel
+        Angel
         <span className="block mt-1 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-violet-400 to-fuchsia-400">
-          Álvarez
+          Alvarez
         </span>
       </motion.h1>
 

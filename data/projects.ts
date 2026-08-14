@@ -20,32 +20,32 @@ export const projects: Project[] = [
       {
         src: "/images/projects/Go-Digital-Login.png",
         alt: "Go Digital dashboard showing digital transformation requests",
-        caption: "Digital transformation request management dashboard",
+        caption: "Login page",
       },
       {
         src: "/images/projects/Go-Digital-Main.png",
         alt: "Go Digital dashboard showing digital transformation requests",
-        caption: "Digital transformation request management dashboard",
+        caption: "Main dashboard",
       },
       {
         src: "/images/projects/Go-Digital-Requests.png",
         alt: "Go Digital dashboard showing digital transformation requests",
-        caption: "Digital transformation request management dashboard",
+        caption: "Requests dashboard",
       },
       {
         src: "/images/projects/Go-Digital-Requests-Details.png",
         alt: "Go Digital dashboard showing digital transformation requests",
-        caption: "Digital transformation request management dashboard",
+        caption: "Request details dashboard",
       },
       {
         src: "/images/projects/Go-Digital-New-Requests.png",
         alt: "Go Digital dashboard showing digital transformation requests",
-        caption: "Digital transformation request management dashboard",
+        caption: "New Request creation dashboard",
       },
       {
         src: "/images/projects/Go-Digital-Admin-Management.png",
         alt: "Go Digital dashboard showing digital transformation requests",
-        caption: "Digital transformation request management dashboard",
+        caption: "Admin management dashboard",
       },
     ],
     github: "https://github.com/Junniora/GoDigital",
