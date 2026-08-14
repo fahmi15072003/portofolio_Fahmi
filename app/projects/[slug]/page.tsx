@@ -4,6 +4,7 @@ import Card from "@/components/ui/Card";
 import Tag from "@/components/ui/Tag";
 import { FiArrowLeft, FiCode, FiLayers, FiCompass } from "react-icons/fi";
 import { projects } from "@/data/projects";
+import ProjectGallery from "@/components/ProjectGallery";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -53,6 +54,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <p className="text-lg md:text-xl text-gray-400 font-light">
             {project.description}
           </p>
+        </div>
+
+        <div className="mb-12">
+          <ProjectGallery images={project.images} projectTitle={project.title} />
         </div>
 
         {/* Contenedor del Caso de Estudio */}

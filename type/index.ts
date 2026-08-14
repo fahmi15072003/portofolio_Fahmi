@@ -11,4 +11,11 @@ export interface Project {
   link?: string;
   github?: string;
   results: string[];
+  images?: ProjectImage[];
+}
+
+export interface ProjectImage {
+  src: string;
+  alt: string;
+  caption?: string;
 }

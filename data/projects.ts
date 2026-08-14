@@ -16,6 +16,38 @@ export const projects: Project[] = [
       "Developed a responsive and intuitive interface using Quasar Framework, improving usability across desktop devices.",
       "Successfully centralized the management of Digital Transformation (DX) requests into a single web platform.",
     ],
+    images: [
+      {
+        src: "/images/projects/Go-Digital-Login.png",
+        alt: "Go Digital dashboard showing digital transformation requests",
+        caption: "Digital transformation request management dashboard",
+      },
+      {
+        src: "/images/projects/Go-Digital-Main.png",
+        alt: "Go Digital dashboard showing digital transformation requests",
+        caption: "Digital transformation request management dashboard",
+      },
+      {
+        src: "/images/projects/Go-Digital-Requests.png",
+        alt: "Go Digital dashboard showing digital transformation requests",
+        caption: "Digital transformation request management dashboard",
+      },
+      {
+        src: "/images/projects/Go-Digital-Requests-Details.png",
+        alt: "Go Digital dashboard showing digital transformation requests",
+        caption: "Digital transformation request management dashboard",
+      },
+      {
+        src: "/images/projects/Go-Digital-New-Requests.png",
+        alt: "Go Digital dashboard showing digital transformation requests",
+        caption: "Digital transformation request management dashboard",
+      },
+      {
+        src: "/images/projects/Go-Digital-Admin-Management.png",
+        alt: "Go Digital dashboard showing digital transformation requests",
+        caption: "Digital transformation request management dashboard",
+      },
+    ],
     github: "https://github.com/Junniora/GoDigital",
   },
   {
@@ -33,6 +65,7 @@ export const projects: Project[] = [
       "Created KPI dashboards for operational monitoring and management decision-making.",
       "Implemented role-based navigation for Supervisors, Reviewers, and Approvers."
     ],
+    images: [],
     github: "https://github.com/Junniora/QualityGateV1",
   },
   {
@@ -50,6 +83,7 @@ export const projects: Project[] = [
       "Implemented a point-of-sale workflow with automatic customer change calculation.",
       "Developed sales reports to monitor business transactions."
     ],
+    images: [],
     github: "https://github.com/Junniora/Alyca-Papeler-a",
   },
   
