@@ -1,165 +1,178 @@
-# Ángel Álvarez — Digital Portfolio
+# Muhamad Fahmi — Digital Portfolio
 
-> A premium, dark-themed developer portfolio built with Next.js 16, TypeScript, Tailwind CSS v4, and Framer Motion. Designed to showcase software engineering projects, technical skills, and professional experience with a modern glassmorphism aesthetic.
+> Website portofolio pribadi Muhamad Fahmi Jalaluddin Ihsan, S.Kom. — lulusan Teknik Informatika dengan fokus pada Data Management dan Web Development. Dibangun dengan Next.js, TypeScript, Tailwind CSS, dan Framer Motion.
 
-![Next.js](https://img.shields.io/badge/Next.js-16.2.9-black?style=flat-square&logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.x-06B6D4?style=flat-square&logo=tailwind-css&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.x-black?style=flat-square&logo=framer&logoColor=white)
 
 ---
 
-## ✨ Features
+## Isi Portofolio
 
-- **App Router** — Built entirely on the Next.js 16 App Router with Server Components and Server Actions.
-- **Glassmorphism UI** — Premium frosted-glass cards with backdrop blur, semi-transparent borders, and inner reflections.
-- **Apple-style Micro-animations** — Spring physics buttons with shimmer effects, spotlight hover on profile card, and staggered entrance animations.
-- **Dynamic Project Pages** — Each project has a dedicated case study page rendered via `/projects/[slug]`.
-- **Scroll-triggered Animations** — All sections animate smoothly into view using Framer Motion's `whileInView`.
-- **Responsive Design** — Fully optimized for mobile, tablet, and desktop using a 12-column CSS Grid layout.
-- **Contact Form** — Server Action-ready contact form integrated with [Resend](https://resend.com) (commented out, easy to activate).
-- **Dark Theme** — Deep slate background (`#030712`) with purple/violet/fuchsia accent palette and animated glow spots.
+- **Hero** — perkenalan singkat, tombol *View Projects* dan *Download CV*.
+- **About** — profil, latar belakang pendidikan, dan ringkasan kemampuan.
+- **Experience** — pengalaman kerja, magang, pelatihan, dan organisasi.
+- **Skills** — teknologi dan tools yang dikuasai, dikelompokkan per kategori.
+- **Projects** — studi kasus project (masalah, solusi, arsitektur, dan hasil), dengan halaman detail per project.
+- **Contact** — tautan GitHub, LinkedIn, email, dan media sosial.
+
+Project yang ditampilkan antara lain Inventory Management System, Web Cashier System, Hosting & Server Management, Fuel Transaction Anomaly Detection (Isolation Forest), dan Egg Detection menggunakan YOLOv8.
 
 ---
 
-## 🛠️ Tech Stack
+## Fitur
 
-| Category | Technologies |
+- **App Router** — dibangun sepenuhnya dengan Next.js App Router.
+- **Tampilan glassmorphism** — kartu transparan dengan efek blur dan palet warna gelap.
+- **Animasi halus** — transisi dan animasi saat scroll dengan Framer Motion.
+- **Halaman detail project** — tiap project punya halaman studi kasus di `/projects/[slug]`.
+- **Responsif** — nyaman dibuka di ponsel, tablet, maupun desktop.
+- **Form kontak (opsional)** — memakai Server Action dan Resend, bisa diaktifkan kapan saja.
+
+---
+
+## Tech Stack
+
+| Kategori | Teknologi |
 |---|---|
-| **Framework** | Next.js 16 (App Router) |
-| **Language** | TypeScript 5 |
+| **Framework** | Next.js (App Router) |
+| **Bahasa** | TypeScript |
 | **Styling** | Tailwind CSS v4 |
-| **Animations** | Framer Motion 12 |
-| **Icons** | React Icons 5 |
-| **Email (optional)** | Resend API via Next.js Server Actions |
+| **Animasi** | Framer Motion |
+| **Ikon** | React Icons |
+| **Email (opsional)** | Resend API via Server Actions |
 
 ---
 
-## 📁 Project Structure
+## Struktur Project
 
 ```
-portfolio/
+portfolio-fahmi-junniora/
 ├── app/
 │   ├── actions/
-│   │   └── sendEmail.ts        # Server Action for contact form (Resend)
+│   │   └── sendEmail.ts        # Server Action untuk form kontak (opsional)
 │   ├── projects/
 │   │   └── [slug]/
-│   │       └── page.tsx        # Dynamic project case study page
-│   ├── globals.css             # Global styles, Tailwind config, CSS utilities
-│   ├── layout.tsx              # Root layout (Navbar, fonts, metadata)
-│   └── page.tsx                # Home page (all sections assembled)
+│   │       └── page.tsx        # Halaman detail project
+│   ├── globals.css             # Style global dan konfigurasi Tailwind
+│   ├── layout.tsx              # Layout utama (Navbar, font, metadata)
+│   └── page.tsx                # Halaman utama
 │
 ├── components/
-│   ├── home/
-│   │   ├── Hero.tsx            # Hero section wrapper + decorative background
-│   │   ├── HeroContent.tsx     # Name, title, description, and CTA buttons
-│   │   ├── HeroButtons.tsx     # "View Projects" and "Download CV" buttons
-│   │   └── HeroImage.tsx       # Profile card with spotlight mouse effect
-│   │
-│   ├── ui/
-│   │   ├── Button.tsx          # Animated glassmorphism button (primary/secondary/outline)
-│   │   ├── Card.tsx            # Glassmorphism card component
-│   │   ├── Tag.tsx             # Technology badge with color variants
-│   │   └── SectionTitle.tsx    # Reusable section heading with badge
-│   │
-│   ├── About.tsx               # About section (narrative + metric cards)
-│   ├── Contact.tsx             # Contact section (social links + form)
-│   ├── Container.tsx           # Max-width layout wrapper
-│   ├── Experience.tsx          # Timeline with roles and achievements
-│   ├── Footer.tsx              # Minimalist footer with quick links
-│   ├── Navbar.tsx              # Fixed glassmorphic navigation bar
-│   ├── Projects.tsx            # Project grid consuming data/projects.ts
-│   └── Skills.tsx              # Categorized tech stack with icons
+│   ├── home/                   # Bagian Hero (konten, tombol, foto profil)
+│   ├── ui/                     # Komponen dasar: Button, Card, Tag, SectionTitle
+│   ├── About.tsx
+│   ├── Contact.tsx
+│   ├── Container.tsx
+│   ├── Experience.tsx
+│   ├── Footer.tsx
+│   ├── Navbar.tsx
+│   ├── ProjectGallery.tsx
+│   ├── Projects.tsx
+│   └── Skills.tsx
 │
 ├── data/
-│   └── projects.ts             # Centralized project data (typed)
+│   └── projects.ts             # Data project
 │
 ├── type/
-│   └── index.ts                # TypeScript interfaces (Project, etc.)
+│   └── index.ts                # Definisi tipe TypeScript (Project, ProjectImage)
 │
 └── public/
-    ├── images/
-    │   └── yo.jpg              # Professional profile photo
-    └── cv.pdf                  # CV/Resume file (add your own)
+    ├── images/                 # Foto profil dan screenshot project
+    └── cv.pdf                  # CV untuk tombol Download CV
 ```
 
 ---
 
-## 🚀 Getting Started
+## Menjalankan di Komputer Lokal
 
-### Prerequisites
-- Node.js 18+
-- npm or pnpm
+### Prasyarat
 
-### Installation
+- Node.js 18 atau lebih baru
+- npm atau pnpm
+
+### Instalasi
 
 ```bash
-# Clone the repository
-git clone https://github.com/Junniora/digital-portfolio.git
+# Clone repository
+git clone https://github.com/fahmi15072003/<nama-repo>.git
 
-# Navigate into the project directory
-cd digital-portfolio
+# Masuk ke folder project
+cd <nama-repo>
 
-# Install dependencies
+# Install dependensi
 npm install
 
-# Start the development server
+# Jalankan server pengembangan
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Buka [http://localhost:3000](http://localhost:3000) di browser.
 
 ---
 
-## 📬 Activating the Contact Form (Optional)
+## Mengubah Isi Portofolio
 
-The contact form is built with a **Next.js Server Action** and the **Resend** email API. To enable real email delivery:
+### Menambah atau mengubah project
 
-1. Create a free account at [resend.com](https://resend.com).
-2. Generate an API key from your dashboard.
-3. Create a `.env.local` file in the root of the project:
+Semua project disimpan di `data/projects.ts`. Contoh format gambar:
 
-```env
-RESEND_API_KEY=re_your_api_key_here
+```ts
+images: [
+  {
+    src: "/images/projects/nama-project/dashboard.png",
+    alt: "Dashboard aplikasi",
+    caption: "Halaman dashboard",
+  },
+],
 ```
 
-4. In `components/Contact.tsx`, uncomment the form block.
-5. In `app/actions/sendEmail.ts`, update the `to` field with your personal email.
+Simpan file gambar di `public/images/projects/<nama-project>/`.
 
-> **Note:** `.env.local` is already in `.gitignore` and will never be pushed to GitHub.
+### Mengganti CV
 
----
-
-## 📦 Adding Your CV
-
-Place your CV file in the `public/` directory with the name `cv.pdf`:
-
-```
-public/
-└── cv.pdf
-```
-
-The "Download CV" button is already configured to serve this file at `/cv.pdf`.
+Letakkan file CV di folder `public/` dengan nama `cv.pdf`. Tombol *Download CV* otomatis mengarah ke `/cv.pdf`.
 
 ---
 
-## 🌐 Deployment
+## Mengaktifkan Form Kontak (Opsional)
 
-This project is optimized for deployment on **Vercel**.
+1. Buat akun gratis di [resend.com](https://resend.com) dan buat API key.
+2. Buat file `.env.local` di folder utama project:
 
-1. Push your code to GitHub.
-2. Import the repository at [vercel.com/new](https://vercel.com/new).
-3. Vercel will auto-detect Next.js and configure the build settings.
-4. Click **Deploy**.
+   ```env
+   RESEND_API_KEY=re_api_key_kamu
+   ```
 
-Every subsequent `git push` to `main` will trigger an automatic redeployment.
+3. Di `components/Contact.tsx`, aktifkan blok form yang sedang di-comment.
+4. Di `app/actions/sendEmail.ts`, isi kolom `to` dengan alamat emailmu.
 
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+> `.env.local` sudah masuk `.gitignore`, jadi tidak akan ikut terunggah ke GitHub.
 
 ---
 
-<p align="center">Designed and built by <strong>Ángel Álvarez</strong> — Software Engineering Student</p>
+## Deployment
+
+Project ini dideploy di **Vercel**.
+
+1. Push kode ke GitHub.
+2. Impor repository di [vercel.com/new](https://vercel.com/new).
+3. Vercel otomatis mengenali Next.js. Klik **Deploy**.
+
+Setiap `git push` ke branch `main` akan memicu deploy ulang secara otomatis.
+
+---
+
+## Kontak
+
+- GitHub: [github.com/fahmi15072003](https://github.com/fahmi15072003)
+- LinkedIn: *(isi tautan LinkedIn)*
+- Email: *(isi alamat email)*
+
+---
+
+## Kredit
+
+Struktur dan desain dasar website ini berasal dari template **Digital Portfolio** karya Ángel Álvarez ([github.com/Junniora/Digital-Portfolio](https://github.com/Junniora/Digital-Portfolio)). Isi konten, data project, dan penyesuaian tampilan dibuat oleh Muhamad Fahmi Jalaluddin Ihsan.
