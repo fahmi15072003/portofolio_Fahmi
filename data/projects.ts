@@ -34,7 +34,7 @@ export const projects: Project[] = [
     ],
     images: [
        {
-        src: "/images/projects/loginsba.png",
+        src: "/images/projects/loginSBA.png",
         alt: "Halaman login Inventory and Cashier Management System",
         caption: "Login Page",
       },

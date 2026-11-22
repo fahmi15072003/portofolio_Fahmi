@@ -147,7 +147,7 @@ type Photo = { src: string; alt: string; caption: string };
 
 const photos: Photo[] = [
   { src: "/images/about/foto-01.jpg", alt: "Dokumentasi wisuda 1", caption: "Wisuda" },
-  { src: "/images/about/foto-02.jpg", alt: "Dokumentasi wisuda 2", caption: "Wisuda" },
+  { src: "/images/about/foto-02.JPG", alt: "Dokumentasi wisuda 2", caption: "Wisuda" },
   { src: "/images/about/foto-03.jpg", alt: "Dokumentasi wisuda 3", caption: "Wisuda" },
   { src: "/images/about/foto-04.jpeg", alt: "Sosialisasi di SMP Yaspiin 1", caption: "Sosialisasi di SMP Yaspiin" },
   { src: "/images/about/foto-05.jpeg", alt: "Sosialisasi di SMP Yaspiin 2", caption: "Sosialisasi di SMP Yaspiin" },
