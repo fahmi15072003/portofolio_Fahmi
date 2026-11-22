@@ -193,7 +193,7 @@ export default function HeroImage() {
               {/* Foto */}
               <div className="relative aspect-4/5 w-full overflow-hidden rounded-2xl bg-slate-950">
                 <Image
-                  src="/images/fahmi4.jpg"
+                  src="/images/fahmi5.jpg"
                   alt="Muhamad Fahmi Jalaluddin Ihsan"
                   fill
                   priority
