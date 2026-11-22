@@ -1,87 +1,111 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import HeroButtons from "./HeroButtons";
 
+const focusAreas = ["Data Analysis", "Data Management", "Web Development","Business Operations"];
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 100, damping: 16 },
+  },
+};
+
+const barVariants: Variants = {
+  hidden: { scaleX: 0, opacity: 0 },
+  visible: {
+    scaleX: 1,
+    opacity: 1,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
+
 export default function HeroContent() {
-  // Variantes del contenedor principal para escalonar las animaciones de los hijos
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15, // Retraso entre la animación de cada elemento hijo
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  // Variantes para cada elemento individual
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  };
-
+  const reduceMotion = useReducedMotion();
 
   return (
     <motion.div
       variants={containerVariants}
-      initial="hidden"
+      initial={reduceMotion ? false : "hidden"}
       animate="visible"
       className="flex flex-col items-start text-left"
     >
-      {/* Badge punto verde parpadeante */}
-      <motion.div 
+      {/* Status */}
+      <motion.div
         variants={itemVariants}
-        className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/5 text-xs font-semibold text-purple-300 backdrop-blur-md mb-6 hover:border-purple-400/30 transition-all duration-300"
+        className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-3.5 py-1.5 text-xs font-medium tracking-wide text-emerald-300"
       >
         <span className="relative flex h-2 w-2">
-          {/* punto verde */}
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+          <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping motion-reduce:animate-none" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
         </span>
-        Available for internships and job opportunities
+        Open to Work Opportunities
       </motion.div>
 
-      {/* Título Principal */}
-      <motion.h1 
+      {/* Judul */}
+      <motion.h1
         variants={itemVariants}
-        className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-white"
+        className="bg-linear-to-r from-white via-purple-200 to-purple-400 bg-clip-text pb-2 text-6xl font-bold leading-none tracking-tight text-transparent md:text-7xl xl:text-8xl"
       >
-        Angel
-        <span className="block mt-1 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-violet-400 to-fuchsia-400">
-          Alvarez
-        </span>
+        Portofolio
       </motion.h1>
 
-      {/* Subtítulo */}
-      <motion.h2 
-        variants={itemVariants}
-        className="mt-6 text-xl md:text-2xl font-semibold text-gray-300/90 leading-relaxed"
-      >
-        Software Engineering Student
-        <span className="block text-gray-400 font-normal text-lg md:text-xl mt-1">
-          Software Developer | Web Development & Digital Transformation
-        </span>
-      </motion.h2>
+      {/* Garis aksen */}
+      <motion.span
+        variants={barVariants}
+        aria-hidden="true"
+        className="mt-5 block h-1 w-20 origin-left rounded-full bg-linear-to-r from-purple-500 to-fuchsia-500"
+      />
 
-      {/* Descripción Breve */}
-      <motion.p 
+      {/* Nama + peran */}
+      <motion.div variants={itemVariants} className="mt-8">
+        <p className="text-lg font-medium tracking-wide text-gray-100 md:text-xl">
+          Muhamad Fahmi Jalaluddin Ihsan
+        </p>
+        <h2 className="mt-1.5 text-sm font-semibold uppercase tracking-[0.2em] text-purple-300">
+          Informatics Engineering Graduate
+        </h2>
+      </motion.div>
+
+      {/* Bidang fokus */}
+      <motion.ul
         variants={itemVariants}
-        className="mt-6 max-w-xl text-base md:text-lg leading-relaxed text-gray-400 font-light"
+        className="mt-5 flex flex-wrap gap-2"
+        aria-label="Focus areas"
       >
-        Software Engineering student passionate about developing software solutions that automate processes and solve real-world business challenges. My experience includes web development, process digitalization, automation, and internal business applications, with a strong focus on creating practical and scalable solutions.
+        {focusAreas.map((item) => (
+          <li
+            key={item}
+            className="rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-gray-300 transition-colors duration-300 hover:border-purple-400/40 hover:text-white"
+          >
+            {item}
+          </li>
+        ))}
+      </motion.ul>
+
+      {/* Deskripsi */}
+      <motion.p
+        variants={itemVariants}
+        className="mt-6 max-w-xl text-base font-light leading-relaxed text-gray-400 md:text-lg"
+      >
+        Informatics Engineering graduate with experience in administration,
+        data management, and web-based application development. Interested in
+        information technology, data processing, and digital solutions to
+        improve business operations and work efficiency.
       </motion.p>
 
-      {/* Botones de acción del Hero */}
+      {/* Tombol */}
       <motion.div variants={itemVariants}>
         <HeroButtons />
       </motion.div>

@@ -1,132 +1,265 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaReact, FaGitAlt, FaHSquare, FaCss3Alt, FaJs } from "react-icons/fa";
-import { SiNextdotjs, SiPostgresql, SiTypescript, SiTailwindcss, SiPython } from "react-icons/si";
-import Card from "../ui/Card";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  type Variants,
+} from "framer-motion";
+import type { IconType } from "react-icons";
+import {
+  FaReact,
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaFileExcel,
+  FaFilePowerpoint,
+  FaFileWord,
+} from "react-icons/fa";
+import { FiCode, FiDatabase, FiMapPin } from "react-icons/fi";
+import {
+  SiNextdotjs,
+  SiPython,
+  SiPhp,
+  SiMysql,
+  SiLaravel,
+} from "react-icons/si";
 import Tag from "../ui/Tag";
-import { FaHtml5 } from "react-icons/fa6";
+
+const MAX_TILT = 6; // derajat kemiringan maksimum
+
+type Tech = {
+  name: string;
+  icon: IconType;
+  variant: "blue" | "yellow" | "purple" | "cyan" | "slate";
+  iconColor?: string; // warna khusus untuk ikon
+};
+
+const techs: Tech[] = [
+  { name: "HTML", icon: FaHtml5, variant: "blue" },
+  { name: "CSS", icon: FaCss3Alt, variant: "blue" },
+  { name: "JavaScript", icon: FaJs, variant: "yellow" },
+  { name: "PHP", icon: SiPhp, variant: "purple" },
+  { name: "Laravel", icon: SiLaravel, variant: "cyan" },
+  { name: "MySQL", icon: SiMysql, variant: "blue" },
+  { name: "Python", icon: SiPython, variant: "slate" },
+  { name: "Next.js", icon: SiNextdotjs, variant: "cyan" },
+  { name: "React", icon: FaReact, variant: "blue" },
+  { name: "Excel", icon: FaFileExcel, variant: "slate", iconColor: "text-emerald-400" },
+  { name: "PowerPoint", icon: FaFilePowerpoint, variant: "slate", iconColor: "text-orange-400" },
+  { name: "Word", icon: FaFileWord, variant: "slate", iconColor: "text-blue-400" },
+];
+
+const tagContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.05, delayChildren: 0.6 } },
+};
+
+const tagItem: Variants = {
+  hidden: { opacity: 0, y: 8, scale: 0.9 },
+  visible: { opacity: 1, y: 0, scale: 1 },
+};
+
+function FloatingBadge({
+  icon: Icon,
+  label,
+  className,
+  delay,
+}: {
+  icon: IconType;
+  label: string;
+  className: string;
+  delay: string;
+}) {
+  return (
+    <div
+      style={{ animationDelay: delay }}
+      className={`animate-float motion-reduce:animate-none absolute z-20 hidden items-center gap-2.5 rounded-2xl border border-white/10 bg-slate-900/90 py-2 pl-2 pr-4 shadow-xl shadow-black/40 md:flex ${className}`}
+    >
+      <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-purple-500/15 text-purple-300">
+        <Icon />
+      </span>
+      <span className="text-xs font-semibold text-gray-100">{label}</span>
+    </div>
+  );
+}
 
 export default function HeroImage() {
-  // Estado para rastrear las coordenadas del cursor dentro de la tarjeta
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
+  const reduceMotion = useReducedMotion();
 
-  // Manejar el movimiento del mouse para calcular la posición relativa del cursor (efecto spotlight)
+  // Posisi mouse: motion value, tidak memicu render ulang
+  const mouseX = useMotionValue(-300);
+  const mouseY = useMotionValue(-300);
+
+  // Kemiringan 3D dengan pegas agar gerakannya halus
+  const rotateXRaw = useMotionValue(0);
+  const rotateYRaw = useMotionValue(0);
+  const rotateX = useSpring(rotateXRaw, { stiffness: 150, damping: 20 });
+  const rotateY = useSpring(rotateYRaw, { stiffness: 150, damping: 20 });
+
+  const spotlight = useMotionTemplate`radial-gradient(320px circle at ${mouseX}px ${mouseY}px, rgba(168, 85, 247, 0.16), transparent 70%)`;
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setCoords({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    mouseX.set(x);
+    mouseY.set(y);
+
+    if (reduceMotion) return;
+    rotateYRaw.set((x / rect.width - 0.5) * 2 * MAX_TILT);
+    rotateXRaw.set(-(y / rect.height - 0.5) * 2 * MAX_TILT);
+  };
+
+  const handleMouseLeave = () => {
+    rotateXRaw.set(0);
+    rotateYRaw.set(0);
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
+      initial={reduceMotion ? false : { opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, type: "spring" }}
+      transition={{ type: "spring", stiffness: 90, damping: 16 }}
       className="relative"
     >
-      {/* 
-        Efecto de flotación envuelto en un contenedor hijo para evitar conflictos
-        con la animación de entrada (Framer Motion best practice)
-      */}
-      <motion.div
-        animate={{ y: [0, -10, 0] }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className="relative group"
+      {/* Cahaya latar (gradient biasa, tanpa blur) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-12 -z-10 bg-[radial-gradient(circle_at_50%_40%,rgba(147,51,234,0.22),transparent_65%)]"
+      />
+
+      {/* Cincin orbit berputar pelan dengan satu titik cahaya */}
+      <div
+        aria-hidden="true"
+        className="animate-orbit-slow pointer-events-none absolute left-1/2 top-1/2 -z-10 hidden aspect-square w-[135%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-purple-400/20 will-change-transform motion-reduce:animate-none md:block"
       >
-        {/* Glow de fondo interactivo que reacciona al hover */}
-        <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-purple-600 to-fuchsia-500 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500 -z-10" />
+        <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-purple-300 shadow-[0_0_12px_rgba(192,132,252,0.9)]" />
+      </div>
 
-        <Card className="relative overflow-hidden w-[310px] md:w-[360px] border border-white/10 select-none">
-          {/* Spotlight overlay: Sigue al cursor del mouse dentro de la tarjeta */}
-          <div
-            className="absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100 -z-10"
-            style={{
-              background: `radial-gradient(280px circle at ${coords.x}px ${coords.y}px, rgba(168, 85, 247, 0.12), transparent 80%)`,
-            }}
-          />
+      {/* Badge melayang di luar kartu */}
+      <FloatingBadge
+        icon={FiCode}
+        label="Web Developer"
+        delay="-2s"
+        className="-left-10 top-24"
+      />
+      <FloatingBadge
+        icon={FiDatabase}
+        label="Data Management"
+        delay="-4s"
+        className="-right-6 bottom-52"
+      />
 
-          {/* Contenedor de la Fotografía con un marco sutil */}
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/5 bg-slate-950">
-            <Image
-              src="/images/yo.jpg"
-              alt="Ángel Álvarez - Software Engineer"
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 768px) 310px, 360px"
-              priority
+      {/* Kartu melayang lewat CSS (GPU) */}
+      <div className="animate-float motion-reduce:animate-none">
+        <motion.div
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={{ rotateX, rotateY, transformPerspective: 900 }}
+          className="group relative w-[310px] select-none will-change-transform md:w-[360px]"
+        >
+          {/* Border dengan cahaya yang berputar mengelilingi kartu */}
+          <div className="relative overflow-hidden rounded-[1.75rem] bg-white/10 p-px shadow-[0_30px_80px_-20px_rgba(88,28,135,0.5)]">
+            <span
+              aria-hidden="true"
+              className="animate-orbit absolute left-1/2 top-1/2 aspect-square w-[250%] -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_0deg,transparent_0deg,transparent_220deg,rgba(192,132,252,0.95)_320deg,transparent_360deg)] will-change-transform motion-reduce:animate-none"
             />
-          </div>
 
-          <div className="mt-5">
-            {/* Metadatos o información complementaria */}
-            <div className="flex items-center justify-between text-xs text-gray-400 border-b border-white/5 pb-3 mb-4">
-              <span>Located in Mexico</span>
-              <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-purple-400" />
-                Software Engineering
-              </span>
+            {/* Isi kartu */}
+            <div className="relative overflow-hidden rounded-[calc(1.75rem-1px)] bg-[#080d1c] p-3.5">
+              {/* Tekstur titik halus */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 opacity-70"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
+                  backgroundSize: "18px 18px",
+                }}
+              />
+
+              {/* Spotlight yang mengikuti kursor */}
+              <motion.div
+                aria-hidden="true"
+                style={{ background: spotlight }}
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
+
+              {/* Foto */}
+              <div className="relative aspect-4/5 w-full overflow-hidden rounded-2xl bg-slate-950">
+                <Image
+                  src="/images/fahmi4.jpg"
+                  alt="Muhamad Fahmi Jalaluddin Ihsan"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 310px, 360px"
+                  className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-transparent" />
+
+                {/* Kilau yang melintas saat di-hover */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-linear-to-r from-transparent via-white/15 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-[500%] motion-reduce:hidden"
+                />
+
+                {/* Sudut bingkai ala viewfinder */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute left-3 top-3 h-6 w-6 rounded-tl-lg border-l-2 border-t-2 border-purple-300/60"
+                />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute bottom-3 right-3 h-6 w-6 rounded-br-lg border-b-2 border-r-2 border-purple-300/60"
+                />
+
+                {/* Badge jurusan */}
+                <div className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full border border-white/15 bg-slate-950/70 px-3 py-1.5 text-xs font-medium text-white">
+                  <span className="h-1.5 w-1.5 rounded-full bg-purple-400" />
+                  Informatics Engineering
+                </div>
+
+                {/* Badge lokasi */}
+                <div className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full border border-white/15 bg-slate-950/70 px-3 py-1.5 text-xs font-medium text-white">
+                  <FiMapPin className="text-purple-400" />
+                  Karawang, Indonesia
+                </div>
+              </div>
+
+              {/* Teknologi */}
+              <div className="relative mt-5 px-0.5 pb-0.5">
+                <div className="mb-3 flex items-center gap-3">
+                  <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-500">
+                    Technologies &amp; Tools
+                  </h3>
+                  <span className="h-px flex-1 bg-linear-to-r from-white/10 to-transparent" />
+                </div>
+
+                <motion.div
+                  variants={tagContainer}
+                  initial={reduceMotion ? false : "hidden"}
+                  animate="visible"
+                  className="flex flex-wrap gap-2"
+                >
+                  {techs.map(({ name, icon: Icon, variant, iconColor }) => (
+                    <motion.div key={name} variants={tagItem}>
+                      <Tag variant={variant}>
+                        <Icon className={`text-sm ${iconColor ?? ""}`} />
+                        <span>{name}</span>
+                      </Tag>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
             </div>
-
-            {/* Subtítulo del stack */}
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">
-              Core Technologies
-            </h4>
-
-            {/* Contenedor Flex Wrap alineado y responsivo */}
-            <div className="flex flex-wrap gap-2">
-              <Tag variant="blue">
-                <FaReact className="text-sm" />
-                <span>React</span>
-              </Tag>
-              <Tag variant="cyan">
-                <SiNextdotjs className="text-sm" />
-                <span>Next.js</span>
-              </Tag>
-              <Tag variant="purple">
-                <SiTypescript className="text-sm" />
-                <span>TypeScript</span>
-              </Tag>
-              <Tag variant="blue">
-                <SiPython className="text-sm" />
-                <span>Python</span>
-              </Tag>
-              <Tag variant="slate">
-                <SiPostgresql className="text-sm" />
-                <span>PostgreSQL</span>
-              </Tag>
-              <Tag variant="slate">
-                <FaGitAlt className="text-sm" />
-                <span>Git</span>
-              </Tag>
-              <Tag variant="red">
-                <FaHtml5 className="text-sm" />
-                <span>HTML</span>
-              </Tag>
-              <Tag variant="blue">
-                <FaCss3Alt className="text-sm" />
-                <span>CSS</span>
-              </Tag>
-              <Tag variant="yellow">
-                <FaJs className="text-sm" />
-                <span>JavaScript</span>
-              </Tag>
-            </div>
           </div>
-        </Card>
-      </motion.div>
+        </motion.div>
+      </div>
     </motion.div>
   );
 }

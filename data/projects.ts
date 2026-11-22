@@ -1,90 +1,292 @@
+
 import { Project } from "@/type";
 
 export const projects: Project[] = [
   {
-    slug: "go-digital",
-    title: "Go Digital",
-    role: "Full Stack Developer",
-    date: "2026",
-    problem: "The client needed a centralized platform to manage and track Digital Transformation (DX) requests and technical support, which were previously handled through scattered emails and spreadsheets.",
-    solution: "Developed a comprehensive web platform that automates the lifecycle of DX requests, including creation, assignment, status updates, and completion tracking. Implemented a responsive interface using Quasar Framework for improved usability.",
-    architecture: "The application is built with Vue.js and TypeScript on the frontend, C# for backend services, and PostgreSQL for data storage. It follows a modular architecture with clear separation of concerns and adheres to SOLID principles.",
-    description: "Is a comprehensive web platform designed for managing, tracking, and collaborating on Digital Transformation (DX) requests and technical support. ",
-    technologies: ["Vue.js", "TypeScript", "C#", "PostgreSQL", "SCSS", "JavaScript", "Node.js", "Pinia"],
+    slug: "cooperative-management-system",
+    title: "Inventory & Cashier Management System",
+    role: "Web Developer",
+    date: "2024 - 2025",
+    problem:
+      "Proses pencatatan transaksi penjualan dan pengelolaan persediaan barang sebelumnya masih dilakukan secara manual. Metode tersebut membuat pencatatan transaksi, pemantauan stok, serta pengelolaan barang masuk dan keluar membutuhkan waktu dan proses yang lebih panjang. Oleh karena itu, diperlukan sistem berbasis web yang dapat mengintegrasikan aktivitas kasir dan manajemen inventaris dalam satu platform untuk mempermudah operasional, meningkatkan efisiensi pencatatan, serta membantu pengelolaan data transaksi dan persediaan secara lebih terstruktur",
+    solution:
+      "Mengembangkan aplikasi berbasis web yang mengintegrasikan sistem kasir dan manajemen inventaris dalam satu platform. Sistem dirancang untuk mempermudah pencatatan transaksi penjualan, pengelolaan data produk, pemantauan stok barang, serta pencatatan barang masuk dan keluar. Dengan mengintegrasikan proses kasir dan inventaris, aplikasi ini membantu menyederhanakan operasional koperasi, mengurangi pencatatan manual, dan mempermudah pengelolaan data transaksi serta persediaan.",
+    architecture:
+      "Dikembangkan menggunakan PHP, Laravel, dan MySQL dengan antarmuka HTML, CSS, JavaScript. Sistem mengintegrasikan pencatatan transaksi penjualan dengan pengelolaan persediaan.",
+    description:
+      "Aplikasi web terintegrasi untuk mendukung operasional koperasi melalui pengelolaan inventaris, transaksi kasir, pencatatan stok, dan laporan operasional.",
+    technologies: [
+      "PHP",
+      "Laravel",
+      "MySQL",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Web Development",
+
+    ],
     results: [
-      "Automated request lifecycle management, including creation, assignment, status updates, and completion tracking.",
-      "Developed a responsive and intuitive interface using Quasar Framework, improving usability across desktop devices.",
-      "Successfully centralized the management of Digital Transformation (DX) requests into a single web platform.",
+      "Mengintegrasikan pengelolaan inventaris dan transaksi kasir dalam satu aplikasi.",
+      "Mempermudah pengelolaan produk, kategori, dan persediaan.",
+      "Mendukung pencatatan barang masuk, barang keluar, dan transaksi penjualan.",
+      "Menyediakan riwayat transaksi dan laporan operasional.",
+      "Mengurangi ketergantungan pada pencatatan transaksi secara manual.",
+    ],
+    images: [
+       {
+        src: "/images/projects/loginsba.png",
+        alt: "Halaman login Inventory and Cashier Management System",
+        caption: "Login Page",
+      },
+      {
+        src: "/images/projects/dashboardsba.png",
+        alt: "Dashboard utama sistem inventory dan kasir",
+        caption: "Dashboard",
+      },
+      {
+        src: "/images/projects/kategorisba.png",
+        alt: "Halaman pengelolaan kategori barang",
+        caption: "Category Management",
+      },
+      {
+        src: "/images/projects/databarangsba.png",
+        alt: "Halaman data barang dan pengelolaan inventaris",
+        caption: "Product Management",
+      },
+      {
+        src: "/images/projects/kasirsba.png",
+        alt: "Halaman kasir dan transaksi penjualan",
+        caption: "Cashier",
+      },
+      {
+        src: "/images/projects/historysba.png",
+        alt: "Halaman histori dan riwayat transaksi penjualan",
+        caption: "Transaction History",
+      },
+        
+    ],
+    github: "",
+    link: "",
+  },
+
+  {
+    slug: "hosting-server-management",
+    title: "HostingKita",
+    role: "Web Developer",
+    date: "2025",
+    problem:
+      "Proyek ini dikembangkan sebagai tugas akademik dari kampus untuk membangun platform berbasis web yang memudahkan pengguna dalam melihat layanan hosting, melakukan pemesanan server, serta mengelola layanan hosting melalui sistem yang terintegrasi. Pengembangan proyek ini bertujuan untuk memahami penerapan teknologi web dalam membangun layanan digital serta mengelola proses pemesanan dan administrasi server secara terstruktur.",
+    solution:
+      "Mengembangkan website pemesanan layanan hosting server serta panel pengelolaan server untuk mendukung proses pemesanan dan pengelolaan layanan.",
+    architecture:
+      "Mengembangkan platform berbasis web dengan memanfaatkan layanan AWS sebagai bagian dari infrastruktur cloud dan pengelolaan server.",
+    description:
+      "Platform web pemesanan hosting server yang dilengkapi panel pengelolaan server dengan memanfaatkan layanan cloud AWS.",
+    technologies: [
+      "AWS",
+      "Cloud Computing",
+      "Web Development",
+      "Server Management",
+      "PHP",
+      "HTML",
+      "CSS",
+      "JavaScript",
+    ],
+    results: [
+      "Mengembangkan website pemesanan layanan hosting server.",
+      "Membangun panel pengelolaan server.",
+      "Mengimplementasikan layanan cloud AWS.",
+      "Mengintegrasikan proses pemesanan dan pengelolaan layanan server.",
     ],
     images: [
       {
-        src: "/images/projects/Go-Digital-Login.png",
-        alt: "Go Digital dashboard showing digital transformation requests",
-        caption: "Login page",
+        src: "/images/projects/hosting1.png",
+        alt: "Halaman utama website HostingKita untuk pemesanan layanan hosting server",
+        caption: "HostingKita",
       },
       {
-        src: "/images/projects/Go-Digital-Main.png",
-        alt: "Go Digital dashboard showing digital transformation requests",
-        caption: "Main dashboard",
+        src: "/images/projects/hosting2.png",
+        alt: "Halaman pemesanan layanan hosting server",
+        caption: "Pemesanan Hosting",
       },
       {
-        src: "/images/projects/Go-Digital-Requests.png",
-        alt: "Go Digital dashboard showing digital transformation requests",
-        caption: "Requests dashboard",
+      src: "/images/projects/hosting3.png",
+        alt: "",
+        caption: "pemesanan hosting server",
       },
-      {
-        src: "/images/projects/Go-Digital-Requests-Details.png",
-        alt: "Go Digital dashboard showing digital transformation requests",
-        caption: "Request details dashboard",
+        {
+      src: "/images/projects/hosting4.png",
+        alt: "",
+        caption: "pemesanan hosting server",
       },
-      {
-        src: "/images/projects/Go-Digital-New-Requests.png",
-        alt: "Go Digital dashboard showing digital transformation requests",
-        caption: "New Request creation dashboard",
+        {
+      src: "/images/projects/hosting5.png",
+        alt: "",
+        caption: "pemesanan hosting server",
       },
-      {
-        src: "/images/projects/Go-Digital-Admin-Management.png",
-        alt: "Go Digital dashboard showing digital transformation requests",
-        caption: "Admin management dashboard",
-      },
+        {
+      src: "/images/projects/hosting6.png",
+        alt: "",
+        caption: "pemesanan hosting server",
+      }
     ],
-    github: "https://github.com/Junniora/GoDigital",
+    link: "https://tiny-halva-43884b.netlify.app/",
   },
+
   {
-    slug: "quality-gate",
-    title: "Quality Gate(QA PMS)",
-    role: "Mobile Developer",
+    slug: "fuel-anomaly-detection",
+    title: "transaction anomaly detection for subsidized fuel using Isolation Forest",
+    role: "Machine Learning Developer",
     date: "2026",
-    problem: "The quality validation process relied heavily on spreadsheets and paper-based documentation, making traceability, milestone verification, and production approval workflows inefficient and difficult to monitor.",
-    solution: "Developed a digital quality management platform that centralizes component registration, validation milestones, evidence tracking, and approval workflows. The system provides role-based access, automated processes, and analytical dashboards to improve operational visibility.",
-    architecture: "Built using an MVVM architecture with Jetpack Compose for the user interface, StateFlow for reactive state management, Firebase services for authentication and cloud data management, and Kotlin Coroutines for optimized asynchronous operations.",
-    description: "A high-performance Quality Management System designed for automotive component traceability and validation. The platform digitizes quality assurance workflows, enabling milestone tracking, hardware registration, approvals, and KPI-driven decision making.",
-    technologies: ["Kotlin", "Firebase Authentication", "Cloud Firestore"],
-    results: [
-      "Digitized the quality validation workflow, replacing manual spreadsheet-based processes.",
-      "Created KPI dashboards for operational monitoring and management decision-making.",
-      "Implemented role-based navigation for Supervisors, Reviewers, and Approvers."
+    problem:
+      "Pemeriksaan transaksi BBM bersubsidi dilakukan secara manual menggunakan Excel. Pemeriksaan transaksi satu per satu menyulitkan proses identifikasi transaksi dengan pola yang berpotensi tidak wajar.",
+    solution:
+      "Menerapkan Isolation Forest untuk mengidentifikasi kandidat transaksi dengan pola tidak biasa berdasarkan data transaksi. Hasil deteksi dilanjutkan dengan Rule-Based Validation untuk membantu menentukan transaksi yang perlu diperiksa lebih lanjut.",
+    architecture:
+      "Menggunakan Python, Pandas, dan Scikit-learn melalui tahapan preprocessing, feature engineering, Min-Max Scaling, Isolation Forest, Rule-Based Validation, serta visualisasi hasil menggunakan Streamlit.",
+    description:
+      "Aplikasi Machine Learning untuk menganalisis transaksi BBM bersubsidi dan mengidentifikasi transaksi yang berpotensi menyimpang menggunakan Isolation Forest dan validasi berbasis aturan.",
+    technologies: [
+      "Python",
+      "Pandas",
+      "Scikit-learn",
+      "Streamlit",
+      "Machine Learning",
+      "laragon",
+      "mysql",
     ],
-    images: [],
-    github: "https://github.com/Junniora/QualityGateV1",
+    results: [
+      "Melakukan preprocessing dan feature engineering pada data transaksi.",
+      "Mengidentifikasi kandidat transaksi tidak wajar menggunakan Isolation Forest.",
+      "Menggabungkan hasil deteksi dengan Rule-Based Validation.",
+      "Menyajikan hasil analisis melalui dashboard visualisasi.",
+      "Membantu mengidentifikasi transaksi yang memerlukan pemeriksaan lebih lanjut.",
+    ],
+    images: [
+      {
+        src: "/images/projects/dashboard-TA.png",
+        alt: "Halaman utama aplikasi deteksi anomali transaksi BBM bersubsidi",
+        caption: "Fuel Anomaly Detection",
+      },
+      {
+        src: "/images/projects/ta1.png",
+        alt: "",
+        caption: "Dashboard Fuel Anomaly Detection",
+      },
+      {
+        src: "/images/projects/ta2.png",
+        alt: "",
+        caption: "Visualisasi Hasil Deteksi",
+      },
+      {
+        src: "/images/projects/ta3.png",
+        alt: "",
+        caption: "visualisasi rule-based validation",
+      },
+      {
+        src: "/images/projects/ta4.png",
+        alt: "",
+        caption: "visualisasi isolation forest",
+      },
+      {
+        src: "/images/projects/ta5.png",
+        alt: "",
+        caption: "hasil data anomali transaksi BBM bersubsidi",
+      },
+      {
+        src: "/images/projects/ta6.png",
+        alt: "",
+        caption: "data kendaraan dan transaksi BBM bersubsidi",
+      },
+      {
+        src: "/images/projects/ta7.png",
+        alt: "",
+        caption: "semua data transaksi BBM bersubsidi",
+      }
+
+    ],
   },
+
   {
-    slug: "alyca",
-    title: "Alyca",
-    role: "Software Developer",
-    date: "2026",
-    problem: "The client required a desktop application to manage inventory and sales transactions for a local stationery store, which was previously handled manually.",
-    solution: "Developed a desktop application that integrates inventory management, a point-of-sale workflow, automatic change calculation, and sales reporting. The system provides a centralized platform to improve operational efficiency and reduce manual errors.",
-    architecture: "Built as a desktop application using Electron with a Vue.js frontend and SQLite as the local database solution for persistent inventory and transaction management.",
-    description: "A desktop inventory and point-of-sale system developed for a local stationery store. The application manages available products, processes sales transactions, calculates customer change, and generates sales reports.",
-    technologies: ["Vue.JS", "Electron", "JavaScript", "SQLite"],
-    results: [
-      "Created a complete inventory management system for a local business.",
-      "Implemented a point-of-sale workflow with automatic customer change calculation.",
-      "Developed sales reports to monitor business transactions."
+    slug: "diabetes-prediction-system",
+    title: "Diabetes Prediction System",
+    role: "Machine Learning Developer",
+    date: "2025",
+    problem:
+      "Pengolahan data parameter kesehatan membutuhkan pendekatan analisis berbasis data untuk membantu menghasilkan prediksi secara sistematis.",
+    solution:
+      "Mengembangkan aplikasi prediksi diabetes menggunakan Machine Learning dengan memanfaatkan parameter kesehatan sebagai masukan model.",
+    architecture:
+      "Menggunakan Python untuk pengolahan data dan penerapan model Machine Learning dalam proses prediksi berdasarkan parameter kesehatan.",
+    description:
+      "Aplikasi prediksi diabetes yang menerapkan Machine Learning untuk mengolah parameter kesehatan dan menghasilkan prediksi berdasarkan model.",
+    technologies: [
+      "Python",
+      "Machine Learning",
+      "Data Processing",
+      "Predictive Analytics",
+      "steamlit",    
     ],
-    images: [],
-    github: "https://github.com/Junniora/Alyca-Papeler-a",
+    results: [
+      "Mengimplementasikan Machine Learning untuk prediksi diabetes.",
+      "Mengolah parameter kesehatan sebagai input model.",
+      "Menerapkan pendekatan analisis data dalam proses prediksi.",
+    ],
+    images: [
+      {
+        src: "/images/projects/diabetes.png",
+        alt: "Halaman utama aplikasi prediksi diabetes",
+      },
+    ],
+    github: "",
+    link: "",
   },
-  
+
+  {
+    slug: "perpustakaan-sekolah-berbasis-web",
+    title: "Perpustakaan Sekolah Berbasis Web",
+    role: "Web Developer",
+    date: "2025",
+    problem:
+      "Manajemen data dan akses informasi perpustakaan sekolah memerlukan solusi digital yang dapat meningkatkan efisiensi dan kenyamanan pengguna.",
+    solution:
+      "Mengembangkan sistem perpustakaan sekolah berbasis web untuk memudahkan manajemen data dan akses informasi.",
+    architecture:
+      "Menggunakan teknologi web modern untuk mengembangkan sistem perpustakaan sekolah yang responsif dan user-friendly.",
+    description:
+      "Proyek pengembangan sistem perpustakaan sekolah berbasis web yang dirancang untuk meningkatkan efisiensi dan kenyamanan pengguna.",
+    technologies: [
+      "Python",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "laravel",
+      "mysql",
+      "laragon",
+    ],
+    results: [
+      "Mengimplementasikan sistem perpustakaan sekolah berbasis web.",
+      "Meningkatkan efisiensi manajemen data perpustakaan.",
+      "Memberikan akses informasi yang lebih mudah bagi pengguna.",
+    ],
+    images: [
+      {
+        src: "/images/projects/perpus1.png",
+        alt: "Halaman utama sistem perpustakaan sekolah",
+      },
+      {
+        src: "/images/projects/perpus2.png",
+        alt: "Halaman daftar buku perpustakaan sekolah",
+      },
+      {
+        src: "/images/projects/perpus3.png",
+        alt: "Halaman detail buku perpustakaan sekolah",    
+      },
+      {
+        src: "/images/projects/perpus4.png",
+        alt: "Halaman peminjaman buku perpustakaan sekolah",
+      },
+      
+    ],
+  },
 ];

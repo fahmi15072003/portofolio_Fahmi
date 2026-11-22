@@ -1,32 +1,41 @@
 import Container from "./Container";
 
+const links = [
+  { label: "About me", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Certifications", href: "#certifications" },
+  { label: "Contact Information", href: "#contact" },
+];
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/5 bg-slate-950/40 py-8 mt-12 backdrop-blur-md">
+    <footer className="mt-12 border-t border-white/5 bg-slate-950/40 py-8 backdrop-blur-md">
       <Container>
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs md:text-sm text-gray-500 font-light select-none">
+        <div className="flex select-none flex-col items-center justify-between gap-4 text-xs font-light text-gray-500 md:flex-row md:text-sm">
           {/* Copyright */}
-          <div>
-            <p>© {currentYear} Ángel Álvarez. Diseñado y construido con Next.js & Tailwind CSS.</p>
+          <div className="text-center md:text-left">
+            <p>
+              © {currentYear} Muhamad Fahmi Jalaluddin Ihsan. Designed and built
+              with Next.js & Tailwind CSS.
+            </p>
           </div>
 
-          {/* Enlaces Rápidos */}
-          <div className="flex items-center gap-6">
-            <a href="#about" className="hover:text-purple-400 transition-colors duration-300">
-              About me
-            </a>
-            <a href="#experience" className="hover:text-purple-400 transition-colors duration-300">
-              Experience
-            </a>
-            <a href="#projects" className="hover:text-purple-400 transition-colors duration-300">
-              Projects
-            </a>
-            <a href="#contact" className="hover:text-purple-400 transition-colors duration-300">
-              Contact Information
-            </a>
-          </div>
+          {/* Quick Links */}
+          <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="transition-colors duration-300 hover:text-purple-400"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
       </Container>
     </footer>

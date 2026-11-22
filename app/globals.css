@@ -1,17 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #030712; /* Slate 950 - Fondo oscuro profundo */
+  --background: #030712; /* Gray 950 - Fondo oscuro profundo */
   --foreground: #f9fafb; /* Gray 50 - Texto claro de alto contraste */
   --grid-color: rgba(255, 255, 255, 0.03); /* Cuadrícula muy sutil */
 }
 
-@theme {
+/* Variabel yang merujuk variabel lain wajib memakai "inline" */
+@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
 
+/* Animasi */
+@theme {
   /* Animación de flotación sutil para la tarjeta del Hero */
   --animate-float: float 6s ease-in-out infinite;
   /* Animación lenta de pulsación para los halos de luz (Glows) */
@@ -26,14 +30,33 @@
     }
   }
 
+  /* Hanya opacity: jauh lebih ringan untuk elemen yang di-blur */
   @keyframes pulse-slow {
     0%, 100% {
       opacity: 0.15;
-      transform: scale(1) translate(0, 0);
     }
     50% {
       opacity: 0.3;
-      transform: scale(1.15) translate(4%, -4%);
+    }
+  }
+    /* Putaran untuk border kartu dan cincin orbit */
+  --animate-orbit: orbit 8s linear infinite;
+  --animate-orbit-slow: orbit 50s linear infinite;
+
+  @keyframes orbit {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+    /* Batang equalizer pada tombol musik */
+  --animate-equalizer: equalizer 1s ease-in-out infinite;
+
+  @keyframes equalizer {
+    0%, 100% {
+      transform: scaleY(0.3);
+    }
+    50% {
+      transform: scaleY(1);
     }
   }
 }
@@ -50,33 +73,39 @@ body {
 /* Efecto de cuadrícula de fondo premium */
 @utility bg-grid {
   background-size: 48px 48px;
-  background-image: 
+  background-image:
     linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
 }
 
 /* Máscara radial para desvanecer la rejilla hacia los bordes */
 @utility mask-radial-fade {
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
   mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
 }
 
 /* Estilo Glassmorphism premium reutilizable */
 @utility glassmorphism {
   background-color: rgba(15, 23, 42, 0.45); /* Slate 900 con transparencia */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px); /* sebelumnya 20px, lebih ringan */
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
+  box-shadow:
     0 4px 30px rgba(0, 0, 0, 0.4),
     inset 0 1px 1px rgba(255, 255, 255, 0.05);
 }
+
 /* Efecto brillo al pasar el mouse por encima */
 @utility glassmorphism-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Hanya properti yang berubah, bukan "all" */
+  transition:
+    background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   &:hover {
     background-color: rgba(15, 23, 42, 0.6);
     border-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 
+    box-shadow:
       0 10px 40px rgba(0, 0, 0, 0.6),
       0 0 20px rgba(168, 85, 247, 0.15), /* Sutil glow morado */
       inset 0 1px 2px rgba(255, 255, 255, 0.1);
@@ -127,8 +156,10 @@ body {
     0 0 14px rgba(168, 85, 247, 0.55);
 }
 
-/* Firefox */
+/* Firefox + scroll halus */
 html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* judul section tidak tertutup navbar melayang */
   scrollbar-width: thin;
   scrollbar-color: rgba(168, 85, 247, 0.5) rgba(15, 10, 30, 0.6);
 }

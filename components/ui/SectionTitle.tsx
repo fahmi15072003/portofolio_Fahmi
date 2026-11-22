@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -7,6 +8,7 @@ interface SectionTitleProps {
   subtitle?: string;
   badge?: string;
   className?: string;
+  align?: "left" | "center";
 }
 
 export default function SectionTitle({
@@ -14,33 +16,44 @@ export default function SectionTitle({
   subtitle,
   badge,
   className = "",
+  align = "left",
 }: SectionTitleProps) {
+  const isCenter = align === "center";
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 25 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-      className={`flex flex-col items-start gap-3 mb-16 ${className}`}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className={`flex flex-col gap-4 mb-16 ${
+        isCenter
+          ? "items-center text-center mx-auto max-w-3xl"
+          : "items-start text-left"
+      } ${className}`}
     >
-      {/* Badge morado decorativo */}
+      {/* Badge */}
       {badge && (
-        <span className="px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/5 text-xs font-semibold text-purple-300 tracking-wide uppercase">
+        <span className="px-4 py-1.5 rounded-full border border-purple-500/20 bg-purple-500/5 text-xs font-medium text-purple-300 tracking-[0.18em] uppercase">
           {badge}
         </span>
       )}
 
-      {/* Título de la Sección */}
-      <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-        {title}
-      </h2>
+      {/* Title */}
+     <h2 className="bg-linear-to-r from-white via-purple-200 to-purple-400 bg-clip-text pb-2 text-4xl font-bold leading-tight tracking-tight text-transparent md:text-5xl xl:text-6xl">
+  {title}
+</h2>
 
-      {/* Línea decorativa degradada */}
+      {/* Accent Line */}
       <div className="h-[2px] w-12 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full" />
 
-      {/* Subtítulo descriptivo */}
+      {/* Subtitle */}
       {subtitle && (
-        <p className="max-w-2xl text-base md:text-lg text-gray-400 font-light mt-2 leading-relaxed">
+        <p
+          className={`max-w-2xl text-base md:text-lg text-gray-400 font-light leading-relaxed ${
+            isCenter ? "text-center mx-auto" : "text-left"
+          }`}
+        >
           {subtitle}
         </p>
       )}
